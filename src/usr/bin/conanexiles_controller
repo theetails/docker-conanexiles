@@ -176,8 +176,8 @@ generate_modscript() {
 
     echo """
 @sSteamCmdForcePlatformType windows
-login anonymous
 force_install_dir /conanexiles
+login anonymous
 """ > $MODS_INSTALL_SCRIPT
 
     for modid in "${modids[@]}" 
