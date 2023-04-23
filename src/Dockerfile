@@ -5,7 +5,7 @@ LABEL maintainer="Paul Steinlechner"
 ENV TIMEZONE=Europe/Vienna \
     DEBIAN_FRONTEND=noninteractive \
     CONANEXILES_MASTERSERVER=1 \
-    CONANEXILES_Game_RconPlugin_RconEnabled=1 \
+    CONANEXILES_Game_RconPlugin_RconEnabled=0 \
     CONANEXILES_Game_RconPlugin_RconPassword=Password \
     CONANEXILES_Game_RconPlugin_RconPort=25575 \
     CONANEXILES_Game_RconPlugin_RconMaxKarma=60 \
@@ -46,7 +46,7 @@ RUN ln -snf /usr/share/zoneinfo/$TIMEZONE /etc/localtime \
     && cd /usr/bin/ \
     && chmod +x conanexiles_controller rconcli steamcmd_setup
 
-EXPOSE 7777/udp 25575 27015/udp 27016/udp 37015/udp 37016/udp 5900
+EXPOSE 7777/udp 25575 27017/udp 37015/udp 37016/udp 5900
 
 VOLUME ["/conanexiles"]
 

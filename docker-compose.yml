@@ -1,21 +1,30 @@
-version: "3.5"
+version: "3.7"
 
 services:
   ce0:
-    image: dockerconanexiles-theetails:1.0.1
+    image: dockerconanexiles-theetails:1.0.8
     restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 24G
+        reservations:
+          cpus: '1'
+          memory: 16M  
     environment:
       - "CONANEXILES_ServerSettings_ServerSettings_AdminPassword=pwd"
       - "CONANEXILES_Engine_OnlineSubSystemSteam_ServerName=server"
       - "CONANEXILES_Engine_OnlineSubSystemSteam_ServerPassword=pwd"
       - "CONANEXILES_INSTANCENAME=loeconnanexiles"
-      - "CONANEXILES_Game_RconPlugin_RconEnabled=1"
-      - "CONANEXILES_Game_RconPlugin_RconPassword=REDACTED"
+      - "CONANEXILES_Game_RconPlugin_RconEnabled=0"
+      - "CONANEXILES_Game_RconPlugin_RconPassword="
       - "CONANEXILES_Game_RconPlugin_RconPort=25575"
       - "CONANEXILES_Game_RconPlugin_RconMaxKarma=60"
       - "CONANEXILES_UPDATE_SHUTDOWN_TIMER=15"
       - "CONANEXILES_SERVER_TYPE=pve"
-      - "CONANEXILES_QUERYPORT=27016"
+      - "CONANEXILES_PORT=7777"
+      - "CONANEXILES_QUERYPORT=27017"
       - "TZ=America"
       # Mods
       ## Pippi: 880454836                                    # Servermanagemnt on another level
@@ -25,7 +34,8 @@ services:
       ## Less Building Placement Restrictions: 1369743238    # Stop limitations of building system
       ## Lexa's Exiled Lands Improved: 2356146223            # Dual Wield (Sword, Axe) and some other nice enhacements
       ## Javelin Improved: 1701136207                        # One of the best, new javelin combos and styles, well balanced
-      - "CONANEXILES_MODS=880454836,1159180273,1369743238,2050780234,2356146223,1701136207"
+      ## Simple Minimap (by Xevyr) 2898150544
+      - "CONANEXILES_MODS=880454836,1159180273,1369743238,2050780234,2356146223,1701136207,2898150544"
       # Very Good Defaults
       - "CONANEXILES_Engine_/script/onlinesubsystemutils.ipnetdriver_NetServerMaxTickRate=30" #INSERT A VALUE OF 30 OR HIGHER
       - "CONANEXILES_Engine_/script/onlinesubsystemutils.ipnetdriver_MaxClientRate=600000"
@@ -235,7 +245,7 @@ services:
     ports:
         - 7777:7777/udp
         - 7778:7778/udp
-        - 27015:27015/udp
+        - 27017:27017/udp
     volumes:
         - data:/conanexiles
 
